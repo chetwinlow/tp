@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/chetwinlow.png" width="200px">
 
 [[github](http://github.com/chetwinlow)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chetwinlow.md)]
 
 * Role: Documentation
 * Responsibilities: In charge of quality of user guide and developer guide
