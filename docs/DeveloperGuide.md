@@ -1399,8 +1399,7 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `addS n/John Doe p/87654321 e/e12345@u.nus.edu a/30 Geylang Drive dd/2021-12-08 1200 st/#@$Beef` <br>
         Expected: Supplier will not be added, and an error message `Supply types should only contain alphanumeric characters and spaces, and it should not be blank` will be shown due to the presence of non-alphanumerical characters in the supply type.
         
-   
-
+       
 ### Adding a reservation
 
 1. The tables are already set and there are still available tables.
@@ -1421,6 +1420,78 @@ testers are expected to do more *exploratory* testing.
    2. Repeat the same test cases as 1.2 and 1.3.<br>
       Expected: No reservation is added. Error message shown, telling users to set tables before use.
 
+### Editing a customer
+
+1. Editing a customer while all customers are being shown.
+    1. Prerequisites: List all customers using the `listC` command.
+    2. Test case: `editC 1 n/Chetwin lp/5000` <br>
+       Expected: First customer in the list will be updated to have "Chetwin" and "5000" as his `name` and `loyalty points` respectively. Details of the edited
+       customer shown in the results display.
+    3. Test case: `editC -1 e/chetwinlow@gmail.com` <br>
+       Expected: Nobody is edited. Error details shown in the results display with a result message `Invalid comamnd
+       format...`
+    4. Test case: `editC 1` <br>
+       Expected: Nobody is edited. Error details shown in the results display with a result message `At least one field to edit must be provided.`
+    5. Other incorrect edit commands to try: `editC ` / `editC f/invalid prefix` / `edit 1` / `editC x n/john`(where x is larger than the customer
+       list size) <br>
+       Expected: Nobody is edited. Error details shown in the results display. Entering the first 2 commands will
+       produce the same error message as test case 1.3 while entering `edit 1` will produce the error message
+       `Unknown command` and the last one resulting in error message `The customer index provided is invalid`
+
+2. Editing a customer while customer list is filtered.
+
+    1. Prerequisites: Filter display list by using the `findC KEYWORD` command,
+       where `KEYWORD` must exist in at least 1 of the customers.
+    2. Repeat the same test cases as 1.2 to 1.4.
+
+### Editing a supplier
+
+1. Editing a supplier while all suppliers are being shown.
+    1. Prerequisites: List all suppliers using the `listS` command.
+    2. Test case: `editS 1 n/Chetwin st/chicken` <br>
+       Expected: First customer in the list will be updated to have "Chetwin" and "chicken" as his `name` and `supply type` respectively. Details of the edited
+       supplier shown in the results display.
+    3. Test case: `editS -1 e/chetwinlow@gmail.com` <br>
+       Expected: Nobody is edited. Error details shown in the results display with a result message `Invalid comamnd
+       format...`
+    4. Test case: `editS 1` <br>
+       Expected: Nobody is edited. Error details shown in the results display with a result message `At least one field to edit must be provided.`
+    5. Other incorrect edit commands to try: `editS ` / `editS f/invalid prefix` / `edit 1` / `editS x n/john`(where x is larger than the supplier
+       list size) <br>
+       Expected: Nobody is edited. Error details shown in the results display. Entering the first 2 commands will
+       produce the same error message as test case 1.3 while entering `edit 1` will produce the error message
+       `Unknown command` and the last one resulting in error message `The supplier index provided is invalid`
+
+2. Editing a supplier while supplier list is filtered.
+
+    1. Prerequisites: Filter display list by using the `findS KEYWORD` command,
+       where `KEYWORD` must exist in at least 1 of the suppliers.
+    2. Repeat the same test cases as 1.2 to 1.4.
+
+### Editing an employee
+
+1. Editing an employee while all employees are being shown.
+    1. Prerequisites: List all employees using the `listE` command.
+    2. Test case: `editE 1 n/Chetwin s/5000` <br>
+       Expected: First employee in the list will be updated to have "Chetwin" and "5000" as his `name` and `salary` respectively. Details of the edited
+       employee shown in the results display.
+    3. Test case: `editE -1 e/chetwinlow@gmail.com` <br>
+       Expected: Nobody is edited. Error details shown in the results display with a result message `Invalid comamnd
+       format...`
+    4. Test case: `editE 1` <br>
+       Expected: Nobody is edited. Error details shown in the results display with a result message `At least one field to edit must be provided.`
+    5. Other incorrect edit commands to try: `editE ` / `editE f/invalid prefix` / `edit 1` / `editE x n/john`(where x is larger than the employee
+       list size) <br>
+       Expected: Nobody is edited. Error details shown in the results display. Entering the first 2 commands will
+       produce the same error message as test case 1.3 while entering `edit 1` will produce the error message
+       `Unknown command` and the last one resulting in error message `The employee index provided is invalid`
+
+2. Editing an employee while employee list is filtered.
+
+    1. Prerequisites: Filter display list by using the `findE KEYWORD` command,
+       where `KEYWORD` must exist in at least 1 of the employees.
+    2. Repeat the same test cases as 1.2 to 1.4.
+
 ### Deleting a customer/employee/supplier/reservation
 
 1. Deleting a customer/employee/supplier/reservation while all customers/employees/suppliers/reservation are being shown.
@@ -1434,11 +1505,11 @@ testers are expected to do more *exploratory* testing.
       format...`
    4. Other incorrect delete commands to try: `deleteS`, `deleteC x`, `delete 1` (where x is larger than the customer 
       list size) <br>
-      Expected: Nobody is deleted. Error details shown in the results display. Entering the first 2 commands will 
-      produce the same error message as test case 1.3 while entering `delete 1` will produce the error message 
+      Expected: Nobody is deleted. Error details shown in the results display. Entering the first command will 
+      produce the same error message as test case 1.3, and `deleteC x` will result in `The customer index provided is invalid`, while entering `delete 1` will produce the error message 
       `Unknown command`
       
-2. Deleting a customer/employee/supplier/reservation while customer list is filtered.
+3. Deleting a customer/employee/supplier/reservation while customer/employee/supplier/reservation list is filtered.
    
    1. Prerequisites: Filter display list by using the `findC KEYWORD`/`findE KEYWORD`/`findS KEYWORD`/`check DATE` command,
       where `KEYWORD` must exist in at least 1 of the customers/employees/suppliers and there must be at least 1 reservation on `DATE`.
