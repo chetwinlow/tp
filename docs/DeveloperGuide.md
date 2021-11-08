@@ -1074,8 +1074,86 @@ Use case resumes from step 2.
 Steps 1c1 - 1c2 are repeated until the supplier to delete exists in RHRH. <br>
 Use case resumes from step 2.
 
+**Use case (UC12): Find Customers in RHRH**
 
-**Use case (UC012): Search for reservation availability**
+**MSS**
+
+1. User enters the command to find the customers in RHRH based on a sequence of keywords.
+2. The customer list is filtered in RHRH based on matching of keywords.
+3. System confirms that the customer list has been filtered and displays number of filtered customers.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. System detects invalid command format.
+    * 1a1. System displays an error, showing unknown command.
+    * 1a2. User enters command again.
+
+Steps 1a1 - 1a2 are repeated until the command is correctly formatted. <br>
+Use case resumes from step 2.
+
+* 1b. System detects empty or invalid keywords.
+    * 1b1. System displays error corresponding to the empty or invalid keywords and provides an example on the accepted format
+      and arguments.
+    * 1b2. User enters command arguments again.
+
+Steps 1b1 - 1b2 are repeated until all command arguments are valid. <br>
+Use case resumes from step 2.
+
+**Use case (UC13): Find Employees in RHRH**
+
+**MSS**
+
+1. User enters the command to find the employees in RHRH based on a sequence of keywords.
+2. The employee list is filtered in RHRH based on matching of keywords.
+3. System confirms that the employee list has been filtered and displays number of filtered employees.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. System detects invalid command format.
+    * 1a1. System displays an error, showing unknown command.
+    * 1a2. User enters command again.
+
+Steps 1a1 - 1a2 are repeated until the command is correctly formatted. <br>
+Use case resumes from step 2.
+
+* 1b. System detects empty or invalid keywords.
+    * 1b1. System displays error corresponding to the empty or invalid keywords and provides an example on the accepted format
+      and arguments.
+    * 1b2. User enters command arguments again.
+
+Steps 1b1 - 1b2 are repeated until all command arguments are valid. <br>
+Use case resumes from step 2.
+
+**Use case (UC14): Find Suppliers in RHRH**
+
+1. User enters the command to find the suppliers in RHRH based on a sequence of keywords.
+2. The supplier list is filtered in RHRH based on matching of keywords.
+3. System confirms that the supplier list has been filtered and displays number of filtered suppliers.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. System detects invalid command format.
+    * 1a1. System displays an error, showing unknown command.
+    * 1a2. User enters command again.
+
+Steps 1a1 - 1a2 are repeated until the command is correctly formatted. <br>
+Use case resumes from step 2.
+
+* 1b. System detects empty or invalid keywords.
+    * 1b1. System displays error corresponding to the empty or invalid keywords and provides an example on the accepted format
+      and arguments.
+    * 1b2. User enters command arguments again.
+
+Steps 1b1 - 1b2 are repeated until all command arguments are valid. <br>
+Use case resumes from step 2.
+
+**Use case (UC15): Search for reservation availability**
 
 **MSS**
 
@@ -1114,7 +1192,7 @@ Use case resumes from step 2.
 
     Use case resumes from step 2.
 
-**Use case (UC13): Sort Customers in RHRH*
+**Use case (UC16): Sort Customers in RHRH*
 
 **MSS**
 
@@ -1144,9 +1222,8 @@ Use case resumes from step 2.
 * 1c. System detects that there are no customers to sort in the current list.
     * 1c1. System displays an error that there are no customers to sort in the current list.
     
-    Use case ends.
 
-**Use case (UC14): Sort Employees in RHRH**
+**Use case (UC17): Sort Employees in RHRH**
 
 **MSS**
 
@@ -1175,10 +1252,9 @@ Use case resumes from step 2.
 
 * 1c. System detects that there are no employees to sort in the current list.
     * 1c1. System displays an error that there are no employees to sort in the current list.
+    
 
-  Use case ends.
-
-**Use case (UC15): Sort Suppliers in RHRH**
+**Use case (UC18): Sort Suppliers in RHRH**
 
 **MSS**
 
@@ -1207,10 +1283,7 @@ Use case resumes from step 2.
 
 * 1c. System detects that there are no suppliers to sort in the current list.
     * 1c1. System displays an error that there are no suppliers to sort in the current list.
-
-  Use case ends.
-
-
+    
 
 *{More to be added}*
 
@@ -1370,7 +1443,47 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Filter display list by using the `findC KEYWORD`/`findE KEYWORD`/`findS KEYWORD`/`check DATE` command,
       where `KEYWORD` must exist in at least 1 of the customers/employees/suppliers and there must be at least 1 reservation on `DATE`.
    2. Repeat the same test cases as 1.2 to 1.4.
-      
+
+### Finding customers
+
+1. Finding the customers
+
+   1. Test case: `findC Chetwin` <br>
+       Expected: The customer list is filtered to only show customers that match "Chetwin"(case-insensitive) in any of its fields. Success message shown in results display.
+   2. Test case: `findC Chetwin 15` <br>
+      Expected: The customer list is filtered to only show customers that match "Chetwin"(case-insensitive) and "15" in any of its fields cumulatively. Success message shown in results display.
+   3. Test case: `findC Chetwin 15 913045` <br>
+      Expected: The customer list is filtered to only show customers that match "Chetwin"(case-insensitive) and "15" and "913045" in any of its fields cumulatively. Success message shown in results display.
+   4. Test case: `findC ` <br>
+      Expected: Customer list is not filtered. Error details shown in the result display, with a result message `Invalid command format`
+
+### Finding suppliers
+
+1. Finding the suppliers
+
+    1. Test case: `findS Chetwin` <br>
+       Expected: The supplier list is filtered to only show customers that match "Chetwin"(case-insensitive) in any of its fields. Success message shown in results display.
+    2. Test case: `findS Chetwin 15` <br>
+       Expected: The  list is filtered to only show suppliers that match "Chetwin"(case-insensitive) and "15" in any of its fields cumulatively. Success message shown in results display.
+    3. Test case: `findS Chetwin 15 913045` <br>
+       Expected: The supplier list is filtered to only show customers that match "Chetwin"(case-insensitive) and "15" and "913045" in any of its fields cumulatively. Success message shown in results display.
+    4. Test case: `findS ` <br>
+       Expected: Supplier list is not filtered. Error details shown in the result display, with a result message `Invalid command format`
+
+### Finding employees
+
+1. Finding the employees
+
+    1. Test case: `findE Chetwin` <br>
+       Expected: The employee list is filtered to only show customers that match "Chetwin"(case-insensitive) in any of its fields. Success message shown in results display.
+    2. Test case: `findE Chetwin 15` <br>
+       Expected: The employee list is filtered to only show suppliers that match "Chetwin 15"(case-insensitive) in any of its fields. Success message shown in results display.
+    3. Test case: `findE Chetwin 15 913045` <br>
+       Expected: The employee list is filtered to only show customers that match "Chetwin 15 913045" in any of its fields. Success message shown in results display.
+    4. Test case: `findE ` <br>
+       Expected: Supplier list is not filtered. Error details shown in the result display, with a result message `Invalid command format`
+
+
 ### Get the corresponding customer of a reservation
 
 1. Getting the corresponding customer of a reservation while all reservations are shown
